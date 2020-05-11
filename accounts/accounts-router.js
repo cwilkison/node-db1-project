@@ -4,6 +4,13 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
     db.select("*")
+    .limit(5)
+    .orderBy('id', 'desc')
+
+    // .query(q => {
+    //     q.orderBy('id', 'desc').limit(5);
+    // })
+
     .from("accounts")
     .then(account => {
         res.status(200).json({ data: account});
